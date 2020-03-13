@@ -20,15 +20,57 @@ Commit your code regularly and meaningfully. This helps both you (in case you ev
 
 This sprint challenge is divided up into three parts:  Hash tables coding, blockchain coding, and a short interview covering parts of hash tables and blockchain.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Interview Questions
 
-Explain in detail the workings of a dynamic array:
-* What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back?
-* What is the worse case scenario if you try to extend the storage size of a dynamic array?
+<!-- Explain in detail the workings of a dynamic array:
+* What is the runtime complexity to access an array, add or remove from the front, and add or remove from the back? -->
+
+Adding and removing from the front or back of an array is O(1).
+To find something in an array depends on if you sort it or not, unsorted it's O(n)
+
+
+<!-- * What is the worse case scenario if you try to extend the storage size of a dynamic array? -->
+
+Extending the size automatically makes anything O(n) because you have to rewrite everything in the old array into the new array.  Worst case is O(n)
 
 Explain how a blockchain is structured. What are the blocks, what is the chain? How is the data organized?
+
+A blockchain is structured as a chain of blocks where each block contains all the transactions which occur until a miner completes a proof of work.  When the miner does a proof of work by solving an arbitrary puzzle, he transmits his proof, the transactions, and everything else inside the block to the other miners.  If the other miners verfiy his proof AND his transactions are correct, then they build on top of his proof which is effectively "voting" for it.  The longest blockchain eventually wins.  There are many pieces of data in a blockchain.  Transactions are listed in order of reciept by the miner, but this can differ due to miners being in different timezones.  Any discrepancies are "voted upon" by all the miners in a Byzantine Generals solution (the longest chain wins).  But there are other types of data, for instance BitCoin scripting language can contain signatures (private keys) which involve scripting language (a forth-like language which is Turing complete when considering the whole network) which can create smart contracts-- which allow people to do complex transactions which might alter WHEN a coin can be spent (nLockTime for instance).  There's also metadata associated with the chain, for instance, each block has a hash, and the entire chain has a hash too, thus miners who enter the network afresh can actually mine immediately by simply verifying the hash headers.  However, this is risky bc miner gamesmanship can deliberately send out faulty things to new miners such that if the new miner doesn't take the time to verify the entire blockchain history from scratch, they might run into a prloblem where the new miner finds a proof of work but it ends up not being valid (very costly).  So most miners verify the entire chain before beginning mining.  
  
-Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible?
+<!-- Explain how proof of work functions. How does it operate. How does this protect the chain from attack. What kind of attack is possible? -->
+
+A PROOF OF WORK IS AN ARBITRARY PUZZLE WHICH IS SOLVED BY THE MINING CLIENT.  TYPICALLY IN BITCOIN, MINERS MUST FIND A HASH WITH A CERTAIN NUMBER OF LEADING ZEROES.  THERE IS NO GREAT ALGO WHICH CAN SHORTEN THE STRATEGY, SO MINERS TYPICALLY REPLY ON BRUTE FORCE PLUS HIGHLY SPECIALIZED ASIC MINING RIGS TO BEAT THEIR COMPETITORS TO THE COINBASE REWARDS.   OVER TIME, HOWEVER, COINBASE REWARDS HALVEN, SUCH THAT EVENTUALLY MINERS ONLY MAKE MONEY FROM MINING FEES, THUS BITCOIN IS MEANT TO SCALE TO MANY TRANSACTIONS TO PROVIDE THE MINERS THE REVENUES TO REINVEST IN THE NETWORK-- THUS MAKING IT FASTER, CHEAPER, AND MORE SECURE OVER TIME.  A PROOF OF WORK PROTECTS THE CHAIN BC MINERS MUST INVEST REAL MONEY TO SOLVE PROOFS OF WORK AS THE NETWORK GETS BIGGER.  THUS, A MINER WOULD BE CRAZY TO CHEAT THE SYSTEM (DOUBLE SPENDING FOR INSTANCE) BC HE WOULD LOSE HIS ENTIRE INVESTMENT AS THE OTHER MINERS CALL HIM OUT ON THE CHEATS/HACKS.  THUS NO SANE MINER WOULD CHEAT, OR ELSE THEY'D LOSE THE VALUE OF THEIR ENTIRE INVESTMENT IN THEIR MINER-RIG SERVER FARMS.  
+
+AN OFT WRITEEN-ABOUT ATTACK IS A 51% ATTACK.  IF A MINER ACHIEVES 51% OF THE HASHING POWER OF THE NETWORK, HE COULD THEORETICALLY DOUBLE-SPEND AND THEN JUST VOTE ON HIS OWN BLOCKS TO ADVANCE THEM FASTER THAN THE REST OF THE NETWORK.  IN PRACTISE, HOWEVER, THIS IS AGAIN FOOLHARDY AS OTHER MINERS WOULD SIMPLY FORK AWAY FROM THE BAD CHEATING MINER AND HE'D BE LEFT ALONE AND HAVE A BAD REPUTATION BESIDES.  CUSTOMERS WOULD LIKELY DRIFT TO THE FORK WITH THE HONEST MINERS.  SO EVEN A 51% ATTACK ISN'T REALISTIC SO LONG AS THE BLOCKCHAIN ACHIEVES PROPER SCALE (MINING RIGS = EXPENSIVE).  SHENANIGANS ARE NOT EASILY POSSIBLE, BC A MINER WITH LESS THAN 51% POWER WILL NEED TO OUTCOMPETE ALL THE OTHER MINERS COMBINED TO DOUBLE SPEND.  THE CHAIN KEEPS GETTING LONGER WHILE A HACKER MINER TRIES TO CATCH UP.  IT'S SIMPLY NOT POSSIBLE OVER ANY LENGTH OF TIME WITHOUT SPENDING/WASTING TOO MUCH MONEY.  THIS MAKES BITCOIN QUITE SECURE.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 ## Project Set Up
 
