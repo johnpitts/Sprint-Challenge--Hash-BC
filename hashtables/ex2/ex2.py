@@ -33,7 +33,7 @@ def reconstruct_trip(tickets, length):
 
     for z in range(1, length-1):
         next_city = hash_table_retrieve(hashtable, previous_city)
-        if next_city is not "NONE": 
+        if next_city is not "NONE" and next_city is not None: 
             print("NOT NOT is hit")                                 # WHY THIS NOT WORKING?
             route[z] = next_city
             print(next_city)
