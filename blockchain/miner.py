@@ -24,12 +24,13 @@ def proof_of_work(last_proof):
 
     print("Searching for next proof")
     proof = 666
-    while self.valid_proof(last_hash, proof) is False:
+    last_hash = hashlib.sha256(str(last_proof).encode().hexdigest()
+    
+    while valid_proof(last_hash, proof) is False:
         proof += 3
 
     print("Proof found: " + str(proof) + " in " + str(timer() - start))
     return proof
-
 
 def valid_proof(last_hash, proof):
     """
